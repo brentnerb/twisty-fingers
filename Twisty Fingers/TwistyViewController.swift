@@ -7,14 +7,16 @@
 //
 
 import UIKit
-import AudioToolbox
+import AudioToolbox     // for vibrating
+import AVFoundation     // for system sounds
 
 @IBDesignable
 class TwistyViewController: UIViewController {
     
     var player1 = Hand()
     var player2 = Hand()
-    var turn = 0
+    var currentPlayer = 1               // by default this will be a 2 player game
+    var target = Target()
 
     @IBOutlet weak var red1: UIButton!
     @IBOutlet weak var blue1: UIButton!
@@ -93,35 +95,122 @@ class TwistyViewController: UIViewController {
     @IBAction func buttonTouched(_ sender: UIButton) {
         
         print("Button Down: \(sender.tag)")
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+//        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        let colorTouched = sender.tag / 10
         
+        if colorTouched == target.color {
+            // correct color was selected
+            print("good")
+            if currentPlayer == 1 {
+                switch target.finger! {
+                case 0:
+                    player1.thumb = target.color
+                case 1:
+                    player1.firstFinger = target.color
+                case 2:
+                    player1.secondFinger = target.color
+                case 3:
+                    player1.ringFinger = target.color
+                case 4:
+                    player1.pinky = target.color
+                default:
+                    print("wut")
+                }
+            } else {
+                switch target.finger! {
+                case 0:
+                    player2.thumb = target.color
+                case 1:
+                    player2.firstFinger = target.color
+                case 2:
+                    player2.secondFinger = target.color
+                case 3:
+                    player2.ringFinger = target.color
+                case 4:
+                    player2.pinky = target.color
+                default:
+                    print("wut")
+                }
+            }
+            
+            currentPlayer = (currentPlayer == 1 ? 2 : 1)      // switch players....
+            
+        } else {
+            // wrong color was touched
+            print("bad")
+            AudioServicesPlaySystemSound(1073)  // https://github.com/TUNER88/iOSSystemSoundsLibrary
+            flashScreen()
+        }
     }
     
     @IBAction func buttonReleased(_ sender: UIButton) {
         
         print("Released: \(sender.tag)")
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+//        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        let colorReleased = sender.tag / 10
+        
+        if currentPlayer == 1 {
+            switch colorReleased {
+            case 0:
+                player1.thumb = nil
+            case 1:
+                player1.firstFinger = nil
+            case 2:
+                player1.secondFinger = nil
+            case 3:
+                player1.ringFinger = nil
+            case 4:
+                player1.pinky = nil
+            default:
+                print("wut")
+            }
+        } else {
+            switch target.finger! {
+            case 0:
+                player2.thumb = nil
+            case 1:
+                player2.firstFinger = nil
+            case 2:
+                player2.secondFinger = nil
+            case 3:
+                player2.ringFinger = nil
+            case 4:
+                player2.pinky = nil
+            default:
+                print("wut")
+            }
+        }
+        
+        if colorReleased != target.color {
+            print("Finger was lifted too soon!")
+            AudioServicesPlaySystemSound(1073)  // https://github.com/TUNER88/iOSSystemSoundsLibrary
+            flashScreen()
+        }
 
     }
     
     @IBAction func spin(_ sender: Any) {
-        
-        turn += 1
-        
+        print("\(player1)")
         let color = arc4random_uniform(4)
         let finger = arc4random_uniform(5)
+        
+        target.finger = Int(finger)
         
         var output = ""
         
         switch color {
         case 0:
             output += "Red "
+            target.color = 1
         case 1:
             output += "Blue "
+            target.color = 2
         case 2:
             output += "Yellow "
+            target.color = 3
         case 3:
             output += "Green "
+            target.color = 4
         default:
             output += ""
         }
@@ -142,8 +231,17 @@ class TwistyViewController: UIViewController {
         }
         
         infoLabel.text = output
+        
     }
     
+    func flashScreen() {
+        self.view.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(unflashScreen), userInfo: nil, repeats: false)
+    }
+    
+    @objc func unflashScreen() {
+        self.view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    }
     
 }
 
