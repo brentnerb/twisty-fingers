@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		1383D2341FB50D63007F7B5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1383D2331FB50D63007F7B5F /* AppDelegate.swift */; };
-		1383D2361FB50D63007F7B5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1383D2351FB50D63007F7B5F /* ViewController.swift */; };
+		1383D2361FB50D63007F7B5F /* TwistyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1383D2351FB50D63007F7B5F /* TwistyViewController.swift */; };
 		1383D2391FB50D63007F7B5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1383D2371FB50D63007F7B5F /* Main.storyboard */; };
 		1383D23B1FB50D63007F7B5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1383D23A1FB50D63007F7B5F /* Assets.xcassets */; };
 		1383D23E1FB50D63007F7B5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1383D23C1FB50D63007F7B5F /* LaunchScreen.storyboard */; };
+		1383D2461FB52931007F7B5F /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1383D2451FB52931007F7B5F /* Hand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1383D2301FB50D63007F7B5F /* Twisty Fingers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twisty Fingers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1383D2331FB50D63007F7B5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1383D2351FB50D63007F7B5F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1383D2351FB50D63007F7B5F /* TwistyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwistyViewController.swift; sourceTree = "<group>"; };
 		1383D2381FB50D63007F7B5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1383D23A1FB50D63007F7B5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1383D23D1FB50D63007F7B5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1383D23F1FB50D63007F7B5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1383D2451FB52931007F7B5F /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +57,12 @@
 			isa = PBXGroup;
 			children = (
 				1383D2331FB50D63007F7B5F /* AppDelegate.swift */,
-				1383D2351FB50D63007F7B5F /* ViewController.swift */,
+				1383D2351FB50D63007F7B5F /* TwistyViewController.swift */,
 				1383D2371FB50D63007F7B5F /* Main.storyboard */,
 				1383D23A1FB50D63007F7B5F /* Assets.xcassets */,
 				1383D23C1FB50D63007F7B5F /* LaunchScreen.storyboard */,
 				1383D23F1FB50D63007F7B5F /* Info.plist */,
+				1383D2451FB52931007F7B5F /* Hand.swift */,
 			);
 			path = "Twisty Fingers";
 			sourceTree = "<group>";
@@ -136,8 +139,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1383D2361FB50D63007F7B5F /* ViewController.swift in Sources */,
+				1383D2361FB50D63007F7B5F /* TwistyViewController.swift in Sources */,
 				1383D2341FB50D63007F7B5F /* AppDelegate.swift in Sources */,
+				1383D2461FB52931007F7B5F /* Hand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
